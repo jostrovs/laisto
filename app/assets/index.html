@@ -13,6 +13,7 @@
         <v-container><v-btn @click="jaa_kortti">Jaa kortti</v-btn></v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
         <vue-board :cards_in="board_cards"></vue-board>
+        <vue-hand v-for="hand in hands" :cards_in="hand.cards" :nimi="hand.name" :id="hand.id"></vue-board>
       </v-content>
     </v-app>
   </div>

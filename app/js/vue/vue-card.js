@@ -13,15 +13,23 @@ Vue.component('vue-card', {
     `,
     props: ['card'],
     data: function(){
-        if(typeof(this.card) === 'undefined'){
-            debugger;
+        let spades = clubs = hearts = diamonds = false;
+        let value = 0;
+        if(typeof(this.card) !== 'undefined'){
+            if(typeof(this.card.isSpades) === 'undefined') debugger;           
+            spades = this.card.isSpades();
+            hearts = this.card.isHearts();
+            clubs = this.card.isClubs();
+            diamonds = this.card.isDiamonds();
+            value = CONST.indVALUES[this.card.value];
         }
+
         return {
-            spades: this.card.isSpades(),
-            clubs: this.card.isClubs(),
-            hearts: this.card.isHearts(),
-            diamonds: this.card.isDiamonds(),
-            value: CONST.indVALUES[this.card.value],
+            spades,
+            clubs,
+            hearts,
+            diamonds,
+            value,
         }
     },
     mounted: function(){

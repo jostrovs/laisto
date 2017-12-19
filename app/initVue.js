@@ -2,6 +2,7 @@ let CONST = require("js/const.js");
 let Card = require("js/card.js");
 let Deck = require("js/deck.js");
 let Board = require("js/board.js");
+let Hand = require("js/hand.js");
 let bus = require("js/bus.js");
 
 var app = new Vue({
@@ -9,6 +10,7 @@ var app = new Vue({
     data: {
         deck: new Deck(),
         board: new Board(),
+        hands: [],
     },
 
     computed: {
@@ -18,11 +20,14 @@ var app = new Vue({
 
         deck_cards(){
             return this.deck.cards;
-        }
+        },
     },
 
     created() {
-        
+        this.hands.push(new Hand({name: "Jori"}));
+        this.hands.push(new Hand({name: "Aino"}));
+        this.hands.push(new Hand({name: "Raija"}));
+        this.hands.push(new Hand({name: "Ismo"}));
     },
     methods: {
         jaa_kortti(){
