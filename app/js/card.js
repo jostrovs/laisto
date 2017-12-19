@@ -1,8 +1,9 @@
 let CONST = require("./const.js");
 
-
+let i=0;
 class Card{
     constructor(opts){
+        this.id=i++;
         this.suite = CONST.SPADES;
         this.value = CONST.A;
 

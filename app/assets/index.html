@@ -11,9 +11,7 @@
       <v-content>
         <v-container>Pakassa on kortteja: {{deck.len()}}</v-container>
         <v-container><v-btn @click="jaa_kortti">Jaa kortti</v-btn></v-container>
-        <v-container>
-          <vue-deck :cards_in="deck_cards"></vue-deck>
-        </v-container>
+        <vue-deck :cards_in="deck_cards"></vue-deck>
         <vue-board :cards_in="board_cards"></vue-board>
       </v-content>
     </v-app>

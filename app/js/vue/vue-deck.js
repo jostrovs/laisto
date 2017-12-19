@@ -7,7 +7,7 @@ Vue.component('vue-deck', {
     template:` 
     <v-container>
         <h3>Deck</h3>
-        <vue-card v-for="card in cards" :card="card"></vue-card>
+        <vue-card v-for="card in cards" :card="card" :key="card.id"></vue-card>
     </v-container>                                                                                         
     `,
     props: ['cards_in'],
