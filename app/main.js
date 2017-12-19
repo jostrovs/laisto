@@ -1,4 +1,6 @@
 require("js/vue/vue-card.js");
+require("js/vue/vue-board.js");
+require("js/vue/vue-deck.js");
 
 require("initVue.js");
 
@@ -58,7 +60,7 @@ for(let ss of subsets){
     for(let item of ss){
         s += item + ", ";
     }
-    console.log(s);
+    //console.log(s);
 }
-console.log("Yhteensä " + subsets.length + " subsettiä:")
+//console.log("Yhteensä " + subsets.length + " subsettiä:")
 

@@ -1,10 +1,12 @@
 let CONST = require("./const.js");
 let Card = require("./card.js");
+let CardCollection = require("./cardcollection.js");
 
 
-class Deck{
+class Deck extends CardCollection{
     constructor(opts){
-        this.cards = [];
+        super();
+
         for(let suite of CONST.SUITE_ARR){
             for(let value of CONST.VALUE_ARR){
                 this.cards.push(new Card({ suite, value }));
@@ -12,10 +14,6 @@ class Deck{
         }
 
         this.shuffle();
-    }
-
-    len(){
-        return this.cards.length;
     }
 
     shuffle(){

@@ -31,6 +31,8 @@ class Card{
     isHearts() {return this.suite == CONST.HEARTS; }
     isClubs() {return this.suite == CONST.CLUBS; }
     isDiamonds() {return this.suite == CONST.DIAMONDS; }
+
+    is(card) { return this.suite == card.suite && this.value == card.value;}
 }
 
 module.exports = Card;

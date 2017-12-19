@@ -13,6 +13,9 @@ Vue.component('vue-card', {
     `,
     props: ['card'],
     data: function(){
+        if(typeof(this.card) === 'undefined'){
+            debugger;
+        }
         return {
             spades: this.card.isSpades(),
             clubs: this.card.isClubs(),
