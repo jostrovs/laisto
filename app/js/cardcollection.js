@@ -1,10 +1,16 @@
+let UTIL = require("./util.js");
 let CONST = require("./const.js");
 let Card = require("./card.js");
 
 
 class CardCollection{
     constructor(){
+        this.key = UTIL.key();
         this.cards = [];
+    }
+
+    setChanged(){
+        this.key = UTIL.key();
     }
 
     len(){

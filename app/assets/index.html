@@ -10,10 +10,13 @@
     <v-app>
       <v-content>
         <v-container>Pakassa on kortteja: {{deck.len()}}</v-container>
-        <v-container><v-btn @click="jaa_kortti">Jaa kortti</v-btn></v-container>
+        <v-container>
+          <v-btn @click="jaa_kortti">Jaa kortti</v-btn>
+          <v-btn @click="seuraava">Seuraava</v-btn>
+        </v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
         <vue-board :cards_in="board_cards"></vue-board>
-        <vue-hand v-for="hand in hands" :cards_in="hand.cards" :nimi="hand.name" :id="hand.id"></vue-board>
+        <vue-hand v-for="hand in hands" :hand_in="hand" :key="hand.key"></vue-hand>
       </v-content>
     </v-app>
   </div>

@@ -8,7 +8,20 @@ class Hand extends CardCollection{
     constructor(opts){
         super();
         this.name = opts.name;
-        this.id = id++;
+        
+        this.turn = false;
+        if(opts.turn) this.turn = true;
+    }
+
+    setChanged(){ super.setChanged();}
+
+    clone(){
+        let ret = new Hand({
+            name: this.name,
+            turn: this.turn,
+        });
+        ret.cards = this.cards;
+        return ret;
     }
 }
 
