@@ -17,11 +17,26 @@ class Card{
             }
         }
 
+        this.value_board = this.value;
+        this.value_hand = this.value;
+        
+        this.special = false;
+
         this.points = 0;
-        if(this.value === CONST.A) this.points = 1;
-        else if(this.value === 2 && this.suite === CONST.SPADES) this.points = 1;
-        else if(this.value === CONST.T && this.suite === CONST.DIAMONDS) this.points = 2;
-        this.special = true;
+        if(this.value === CONST.A) {
+            this.points = 1;
+            this.value_board = 1;
+            this.value_hand = 14;
+            this.special = true;
+        } else if(this.value === 2 && this.suite === CONST.SPADES) {
+            this.points = 1;
+            this.value_hand = 15;
+            this.special = true;
+        } else if(this.value === CONST.T && this.suite === CONST.DIAMONDS){
+            this.points = 2;
+            this.value_hand = 10;
+            this.special = true;
+        }
     }
 
     str(){

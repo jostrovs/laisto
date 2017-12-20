@@ -15,10 +15,6 @@ var app = new Vue({
     },
 
     computed: {
-        board_cards(){
-            return this.board.cards;
-        },
-
         deck_cards(){
             return this.deck.cards;
         },
@@ -36,6 +32,7 @@ var app = new Vue({
             this.board.push(this.deck.pop());
             this.board.push(this.deck.pop());
             this.board.push(this.deck.pop());
+            this.board.laske();
 
             for(let i=0;i<this.hands.length;++i){
                 this.hands[i].cards.push(this.deck.pop());

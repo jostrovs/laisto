@@ -16,7 +16,7 @@
           <v-btn @click="seuraava">Seuraava</v-btn>
         </v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
-        <vue-board :cards_in="board_cards"></vue-board>
+        <vue-board :board_in="board" :key="board.key"></vue-board>
         <vue-hand v-for="hand in hands" :hand_in="hand" :key="hand.key"></vue-hand>
       </v-content>
     </v-app>

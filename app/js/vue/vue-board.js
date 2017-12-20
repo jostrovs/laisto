@@ -7,13 +7,26 @@ Vue.component('vue-board', {
     template:` 
     <v-container>
         <h3>Board</h3>
+        Subsettejä: {{subsets}}
         <vue-card v-for="card in cards" :card="card" :key="card.id"></vue-card>
+        Vapaat: <span v-for="i in vapaat">{{i}} </span>
     </v-container>                                                                                         
     `,
-    props: ['cards_in'],
+    props: ['board_in'],
     data: function(){
+        for(let ss of this.board_in.l_subsets){
+            let s = "";
+            for(let item of ss){
+                s += item.value_board + ", ";
+            }
+            console.log(s);
+        }
+        console.log("Yhteensä " + this.board_in.l_subsets.length + " subsettiä:")
+
         return {
-            cards: this.cards_in,
+            cards: this.board_in.cards,
+            subsets: this.board_in.l_subsets.length,
+            vapaat: this.board_in.vapaat,
         }
     },
     mounted: function(){
