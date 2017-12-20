@@ -31,6 +31,21 @@ var app = new Vue({
         this.hands.push(new Hand({name: "Ismo"}));
     },
     methods: {
+        jaa(){
+            this.board.push(this.deck.pop());
+            this.board.push(this.deck.pop());
+            this.board.push(this.deck.pop());
+            this.board.push(this.deck.pop());
+
+            for(let i=0;i<this.hands.length;++i){
+                this.hands[i].cards.push(this.deck.pop());
+                this.hands[i].cards.push(this.deck.pop());
+                this.hands[i].cards.push(this.deck.pop());
+                this.hands[i].cards.push(this.deck.pop());
+                this.hands[i].setChanged();
+            }
+        },
+        
         jaa_kortti(){
             let card = this.deck.pop();
             this.board.push(card);

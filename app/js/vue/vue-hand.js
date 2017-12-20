@@ -18,7 +18,7 @@ Vue.component('vue-hand', {
     data: function(){
         return {
             show_cards: this.hand_in.cards.length > 0,
-            cards: this.hand_in.cards_in,
+            cards: this.hand_in.cards,
             name: this.hand_in.name,
             in_turn: this.hand_in.turn,
         }
