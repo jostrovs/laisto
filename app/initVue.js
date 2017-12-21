@@ -25,13 +25,15 @@ var app = new Vue({
         this.players.push(new Player({name: "Aino"}));
         this.players.push(new Player({name: "Raija"}));
         this.players.push(new Player({name: "Ismo"}));
+
+        bus.on(CONST.EVENT_PLAY_CARD, this.playCard);
     },
     methods: {
         jaa(){
-            this.board.push(this.deck.pop());
-            this.board.push(this.deck.pop());
-            this.board.push(this.deck.pop());
-            this.board.push(this.deck.pop());
+            this.board.add(this.deck.pop());
+            this.board.add(this.deck.pop());
+            this.board.add(this.deck.pop());
+            this.board.add(this.deck.pop());
             this.board.laske();
 
             for(let i=0;i<this.players.length;++i){
@@ -45,20 +47,31 @@ var app = new Vue({
         
         jaa_kortti(){
             let card = this.deck.pop();
-            this.board.push(card);
+            this.board.add(card);
         },
 
         seuraava(){
             let i=0;
-            for(;i<this.hands.length;++i) if(this.hands[i].turn) break;
+            for(;i<this.players.length;++i) if(this.players[i].turn) break;
 
-            this.hands[i].turn = false;
-            this.hands[i].setChanged();
+            this.players[i].turn = false;
+            this.players[i].setChanged();
 
-            if(++i >= this.hands.length) i=0;
+            if(++i >= this.players.length) i=0;
 
-            this.hands[i].turn = true;
-            this.hands[i].setChanged();
+            this.players[i].turn = true;
+            this.players[i].setChanged();
+        },
+
+        playCard(card){
+            let i=0;
+            for(;i<this.players.length;++i) if(this.players[i].turn) break;
+
+            this.players[i].removeHandCard(card);
+            this.board.add(card);
+            this.board.laske();
+
+            this.seuraava();
         }
     }
 });

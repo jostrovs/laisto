@@ -23,6 +23,9 @@ class Board extends CardCollection{
     }
 
     setChanged() { super.setChanged()}
+    add(card){ super.add([card]);}
+    remove(card){ super.remove(card);}
+
 
     laske(){
         this.l_subsets = [];
