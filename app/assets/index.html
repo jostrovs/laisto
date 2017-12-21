@@ -17,7 +17,7 @@
         </v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
         <vue-board :board_in="board" :key="board.key"></vue-board>
-        <vue-hand v-for="hand in hands" :hand_in="hand" :key="hand.key"></vue-hand>
+        <vue-player v-for="player in players" :player_in="player" :key="player.key"></vue-player>
       </v-content>
     </v-app>
   </div>

@@ -1,9 +1,10 @@
-let Hand = require("../hand.js");
-let Card = require("../card.js");
+let Player = require("js/player.js");
+let Hand = require("js/hand.js");
+let Card = require("js/card.js");
 let bus = require("js/bus.js");
 
 
-Vue.component('vue-hand', {
+Vue.component('vue-player', {
     template:` 
     <v-container>
         <h3>
@@ -14,13 +15,13 @@ Vue.component('vue-hand', {
         <vue-card v-if="show_cards" v-for="card in cards" :card="card" :key="card.id"></vue-card>
     </v-container>                                                                                         
     `,
-    props: ['hand_in'],
+    props: ['player_in'],
     data: function(){
         return {
-            show_cards: this.hand_in.cards.length > 0,
-            cards: this.hand_in.cards,
-            name: this.hand_in.name,
-            in_turn: this.hand_in.turn,
+            show_cards: this.player_in.hand.cards.length > 0,
+            cards: this.player_in.hand.cards,
+            name: this.player_in.hand.name,
+            in_turn: this.player_in.turn,
         }
     },
     mounted: function(){

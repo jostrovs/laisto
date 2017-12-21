@@ -9,20 +9,22 @@ class Hand extends CardCollection{
         super();
         this.name = opts.name;
         
-        this.turn = false;
-        if(opts.turn) this.turn = true;
     }
+
+    add(card){ super.add([card]);}
+    remove(card){ super.remove(card);}
 
     setChanged(){ super.setChanged();}
 
     clone(){
         let ret = new Hand({
             name: this.name,
-            turn: this.turn,
         });
         ret.cards = this.cards;
         return ret;
     }
+
+
 }
 
 module.exports = Hand;
