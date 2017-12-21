@@ -67,8 +67,23 @@ var app = new Vue({
             let i=0;
             for(;i<this.players.length;++i) if(this.players[i].turn) break;
 
+            // Otetaan pöydältä
+            let subset = this.board.getSubset(card.value_hand);
+            
+            for(let card of subset){
+                this.board.remove(card);
+                this.players[i].addCollectionCard(card);
+            }
+
             this.players[i].removeHandCard(card);
-            this.board.add(card);
+
+            if(subset.length < 1){
+                // Laitto
+                this.board.add(card);
+            } else {
+                // Otto
+                this.players[i].addCollectionCard(card);
+            }
             this.board.laske();
 
             this.seuraava();

@@ -1,4 +1,5 @@
 let CONST = require("./const.js");
+let UTIL = require("./util.js");
 
 let i=0;
 class Card{
@@ -49,6 +50,8 @@ class Card{
     isDiamonds() {return this.suite == CONST.DIAMONDS; }
 
     is(card) { return this.suite == card.suite && this.value == card.value;}
+
+    setChanged(){ this.key = UTIL.key();}
 }
 
 module.exports = Card;

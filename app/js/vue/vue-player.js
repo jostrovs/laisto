@@ -17,8 +17,10 @@ Vue.component('vue-player', {
                 <vue-card :card="card" :key="card.id"></vue-card>
             </span>
         </template>
+        Otettu: {{otettu}}
         Valittu: {{valittu.value}}
         <v-btn v-if="in_turn && valittu" @click="pelaa">Pelaa</v-btn>
+
     </v-container>                                                                                         
     `,
     props: ['player_in'],
@@ -29,6 +31,7 @@ Vue.component('vue-player', {
             name: this.player_in.hand.name,
             in_turn: this.player_in.turn,
             valittu: "",
+            otettu: this.player_in.collection.cards.length,
         }
     },
     methods: {

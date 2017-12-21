@@ -19,6 +19,7 @@ class CardCollection{
 
     add(cards){
         for(let card of cards){
+            card.setChanged();
             this.cards.push(card);
         }
     }

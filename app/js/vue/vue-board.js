@@ -14,15 +14,6 @@ Vue.component('vue-board', {
     `,
     props: ['board_in'],
     data: function(){
-        for(let ss of this.board_in.l_subsets){
-            let s = "";
-            for(let item of ss){
-                s += item.value_board + ", ";
-            }
-            console.log(s);
-        }
-        console.log("Yhteensä " + this.board_in.l_subsets.length + " subsettiä:")
-
         return {
             cards: this.board_in.cards,
             subsets: this.board_in.l_subsets.length,

@@ -28,7 +28,7 @@ class Player {
         this.hand.remove(card);
     }
     addCollectionCard(card){
-        this.collection.cards.add(card);
+        this.collection.add([card]);
     }
 }
 

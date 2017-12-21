@@ -23,9 +23,38 @@ class Board extends CardCollection{
     }
 
     setChanged() { super.setChanged()}
-    add(card){ super.add([card]);}
+    add(card){ 
+        super.add([card]);
+        this.setChanged();
+    }
     remove(card){ super.remove(card);}
 
+    getSubset(value){
+        if(this.l_subsets.length < 1) return [];
+        let minval = 10000;
+        let min_subset = [];
+
+        let value_subsets = this.l_subsets.filter(ss=>{return sum(ss) == value;});
+
+        for(let subset of value_subsets){
+            let val = this.eval(subset);
+            if(val < minval){
+                minval = val;
+                min_subset = subset;
+            }
+        }
+        return min_subset;
+    }
+
+    eval(subset){
+        let val = 0;
+        for(let card of subset){
+            val += card.points * 100;
+            if(card.isSpades()) val += 20;
+            val += 5;
+        }
+        return val;
+    }
 
     laske(){
         this.l_subsets = [];
