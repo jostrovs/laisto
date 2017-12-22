@@ -47,14 +47,27 @@ class Board extends CardCollection{
         let value_subsets = this.l_subsets.filter(ss=>{return sum(ss) == value;});
 
         for(let subset of value_subsets){
-            let val = this.eval(subset);
+            let totalSubset = this.otaLisaa(subset, value);
+
+            let val = this.eval(totalSubset);
 
             if(val < minval){
                 minval = val;
-                min_subset = subset;
+                min_subset = totalSubset;
             }
         }
         return min_subset;
+    }
+
+    otaLisaa(subset, value){
+        let afterBoard = this.clone();
+        for(let card of subset) afterBoard.remove(card);
+        afterBoard.laske();
+        let ret = afterBoard.getSubset(value);
+
+        for(let card of subset) ret.push(card);
+
+        return ret;
     }
 
     takeSubset(value){
