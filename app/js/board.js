@@ -20,6 +20,7 @@ class Board extends CardCollection{
         super();
         this.l_subsets = [];
         this.vapaat = [];
+        this.l_take_subsets = [];
     }
 
     setChanged() { super.setChanged()}
@@ -31,6 +32,8 @@ class Board extends CardCollection{
 
     getSubset(value){
         if(this.l_subsets.length < 1) return [];
+        if(this.vapaat.indexOf(value)>=0) return [];
+
         let minval = 10000;
         let min_subset = [];
 
@@ -46,6 +49,10 @@ class Board extends CardCollection{
         return min_subset;
     }
 
+    takeSubset(value){
+        return this.l_take_subsets[value];
+    }
+
     eval(subset){
         let val = 0;
         for(let card of subset){
@@ -53,6 +60,9 @@ class Board extends CardCollection{
             if(card.isSpades()) val += 20;
             val += 5;
         }
+
+        if(subset.length == this.cards.length) val += 100; // Mökki
+
         return val;
     }
 
@@ -62,13 +72,18 @@ class Board extends CardCollection{
 
         for(let card of this.cards) this.l_add(card);
 
+        this.l_take_subsets = [[]];
+
         // Lasketaan summat
         this.vapaat = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
         for(let subset of this.l_subsets){
             let summa = sum(subset);
             this.vapaat = this.vapaat.filter(item=>{return item != summa;});
         }
-        
+        for(let i=2;i<17;++i){
+            this.l_take_subsets.push(this.getSubset(i));
+        }
+
         this.setChanged();
         return this.l_subsets;
     }
