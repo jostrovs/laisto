@@ -1,3 +1,5 @@
+let CONST = require("../const.js");
+let UTIL = require("../util.js");
 let Board = require("../board.js");
 let Card = require("../card.js");
 let bus = require("js/bus.js");
@@ -15,9 +17,9 @@ Vue.component('vue-board', {
     props: ['board_in'],
     data: function(){
         return {
-            cards: this.board_in.cards,
+            cards: this.board_in.cards.sort(UTIL.SORT),
             subsets: this.board_in.l_subsets.length,
-            vapaat: this.board_in.vapaat,
+            vapaat: this.board_in.vapaat.map(item=>CONST.indVALUES[item]),
         }
     },
     mounted: function(){

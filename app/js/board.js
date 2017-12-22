@@ -21,6 +21,13 @@ class Board extends CardCollection{
         this.l_subsets = [];
         this.vapaat = [];
         this.l_take_subsets = [];
+        this.l_take_values = [];
+    }
+
+    clone(){
+        let c = new Board();
+        c.cards = cloneArr(this.cards);
+        return c;
     }
 
     setChanged() { super.setChanged()}
@@ -52,17 +59,27 @@ class Board extends CardCollection{
     takeSubset(value){
         return this.l_take_subsets[value];
     }
+    takeValue(card){
+        if(this.vapaat.indexOf(card.value_hand)) return 0;
+        return this.l_take_values[card.value_hand] + this.evalCard(card);
+    }
 
     eval(subset){
         let val = 0;
         for(let card of subset){
-            val += card.points * 100;
-            if(card.isSpades()) val += 20;
-            val += 5;
+            val += this.evalCard(card);
         }
 
         if(subset.length == this.cards.length) val += 100; // Mökki
 
+        return val;
+    }
+
+    evalCard(card){
+        let val = 0;
+        val += card.points * 100;
+        if(card.isSpades()) val += 20;
+        val += 5;
         return val;
     }
 
@@ -72,7 +89,8 @@ class Board extends CardCollection{
 
         for(let card of this.cards) this.l_add(card);
 
-        this.l_take_subsets = [[]];
+        this.l_take_subsets = [[], []];
+        this.l_take_values = [0,0];
 
         // Lasketaan summat
         this.vapaat = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
@@ -81,7 +99,11 @@ class Board extends CardCollection{
             this.vapaat = this.vapaat.filter(item=>{return item != summa;});
         }
         for(let i=2;i<17;++i){
-            this.l_take_subsets.push(this.getSubset(i));
+            let subset = this.getSubset(i);
+            let value = this.eval(subset);
+
+            this.l_take_subsets.push(subset);
+            this.l_take_values.push(value);
         }
 
         this.setChanged();

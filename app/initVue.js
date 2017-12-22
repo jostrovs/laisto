@@ -68,7 +68,7 @@ var app = new Vue({
             for(;i<this.players.length;++i) if(this.players[i].turn) break;
 
             // Otetaan pöydältä
-            let subset = this.board.getSubset(card.value_hand);
+            let subset = this.board.takeSubset(card.value_hand);
             
             for(let card of subset){
                 this.board.remove(card);
@@ -87,6 +87,24 @@ var app = new Vue({
             this.board.laske();
 
             this.seuraava();
-        }
+        },
+
+        tick(){
+            this.board.laske();
+            console.table(this.board.l_take_subsets);
+
+        },
+
+        test(){
+            this.board.add(new Card({suite: 1, value: 2}));
+            this.board.add(new Card({suite: 1, value: 2}));
+
+            this.players = [];
+            this.players.push(new Player({name: "Jori", turn: true}));
+
+            this.players[0].hand.add(new Card({suite: 1, value: 2}));
+
+            this.board.laske();
+        },
     }
 });

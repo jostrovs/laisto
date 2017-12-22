@@ -15,7 +15,7 @@ module.exports = Object.freeze({
     K: 13,
 
     VALUES: ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A', 'L', 'R'],
-    indVALUES: [0, 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A', 'L', 'R'],
+    indVALUES: [0, 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A', 'Lilla', 'Tuura'],
 
     EVENT_PLAY_CARD: "EVENT_PLAY_CARD",
 });

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
@@ -14,10 +15,12 @@
           <v-btn @click="jaa">Jaa</v-btn>
           <v-btn @click="jaa_kortti">Jaa kortti</v-btn>
           <v-btn @click="seuraava">Seuraava</v-btn>
+          <v-btn @click="tick">Tick</v-btn>
+          <v-btn @click="test">Test</v-btn>
         </v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
         <vue-board :board_in="board" :key="board.key"></vue-board>
-        <vue-player v-for="player in players" :player_in="player" :key="player.key"></vue-player>
+        <vue-player v-for="player in players" :player_in="player" :board_in="board" :key="player.key"></vue-player>
       </v-content>
     </v-app>
   </div>
