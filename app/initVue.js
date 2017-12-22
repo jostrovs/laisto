@@ -96,14 +96,8 @@ var app = new Vue({
         },
 
         test(){
-            this.board.cards = [];
             this.board.add(new Card({suite: 1, value: 2}));
             this.board.add(new Card({suite: 1, value: 2}));
-
-            this.players = [];
-            this.players.push(new Player({name: "Jori", turn: true}));
-
-            this.players[0].hand.add(new Card({suite: 1, value: 2}));
 
             this.board.laske();
         },

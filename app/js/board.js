@@ -37,35 +37,39 @@ class Board extends CardCollection{
     }
     remove(card){ super.remove(card);}
 
-    getSubset(value){
+    getSubset(value, external_minval){
         if(this.l_subsets.length < 1) return [];
         if(this.vapaat.indexOf(value)>=0) return [];
 
-        let minval = 10000;
+        let minval = external_minval;
+        if(typeof(external_minval) === 'undefined') minval = 10000;
+
         let min_subset = [];
 
         let value_subsets = this.l_subsets.filter(ss=>{return sum(ss) == value;});
 
         for(let subset of value_subsets){
-            let totalSubset = this.otaLisaa(subset, value);
+            let val = this.eval(subset);
+            if(val >= external_minval) continue;
 
-            let val = this.eval(totalSubset);
+            let lisaSubset = this.otaLisaa(subset, value, minval);
+
+            val += this.eval(lisaSubset);
 
             if(val < minval){
                 minval = val;
-                min_subset = totalSubset;
+                min_subset = lisaSubset;
+                for(let card of subset) min_subset.push(card);
             }
         }
         return min_subset;
     }
 
-    otaLisaa(subset, value){
+    otaLisaa(subset, value, external_minval){
         let afterBoard = this.clone();
         for(let card of subset) afterBoard.remove(card);
-        afterBoard.laske();
-        let ret = afterBoard.getSubset(value);
-
-        for(let card of subset) ret.push(card);
+        afterBoard.laske(value);
+        let ret = afterBoard.getSubset(value, external_minval);
 
         return ret;
     }
@@ -97,11 +101,13 @@ class Board extends CardCollection{
         return val;
     }
 
-    laske(){
+    laske(onlyCardValue){
         this.l_subsets = [];
         this.l_board = [];
 
         for(let card of this.cards) this.l_add(card);
+
+        this.l_subsets = this.l_subsets.sort((i1, i2)=>i2.length-i1.length);
 
         this.l_take_subsets = [[], []];
         this.l_take_values = [0,0];
@@ -113,6 +119,13 @@ class Board extends CardCollection{
             this.vapaat = this.vapaat.filter(item=>{return item != summa;});
         }
         for(let i=2;i<17;++i){
+            if(onlyCardValue > 0 && i != onlyCardValue){
+                // Ollaan ali-boardissa, jossa tutkitaan mitä muuta samalla kortilla saa.
+                this.l_take_subsets.push([]);
+                this.l_take_values.push(0);
+                continue;
+            }
+            
             let subset = this.getSubset(i);
             let value = this.eval(subset);
 

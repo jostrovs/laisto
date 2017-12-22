@@ -14,7 +14,7 @@ Vue.component('vue-player', {
             <span v-else>{{name}}</span>
         </h3>
         <template v-if="show_cards" v-for="card in cards">
-            <span @click="valkkaa(card)">
+            <span @click="valkkaa(card)" :title="card.play_set">
                 <vue-card :card="card" :key="card.id" :play_value="card.play_value"></vue-card>
             </span>
         </template>
@@ -30,6 +30,8 @@ Vue.component('vue-player', {
         let localCards = this.player_in.hand.cards.sort(UTIL.SORT);
         localCards = localCards.map(card=>{
             card.play_value = self.board_in.takeValue(card);
+            let ss = self.board_in.takeSubset(card.value_hand).sort(UTIL.SORT);
+            card.play_set = UTIL.toStr(ss);
             return card;
         });
 
