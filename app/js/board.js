@@ -48,6 +48,7 @@ class Board extends CardCollection{
 
         for(let subset of value_subsets){
             let val = this.eval(subset);
+
             if(val < minval){
                 minval = val;
                 min_subset = subset;
@@ -60,7 +61,7 @@ class Board extends CardCollection{
         return this.l_take_subsets[value];
     }
     takeValue(card){
-        if(this.vapaat.indexOf(card.value_hand)) return 0;
+        if(this.vapaat.indexOf(card.value_hand)>=0) return 0;
         return this.l_take_values[card.value_hand] + this.evalCard(card);
     }
 
@@ -107,7 +108,6 @@ class Board extends CardCollection{
         }
 
         this.setChanged();
-        return this.l_subsets;
     }
 
     l_add(card){

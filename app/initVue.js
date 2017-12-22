@@ -96,6 +96,7 @@ var app = new Vue({
         },
 
         test(){
+            this.board.cards = [];
             this.board.add(new Card({suite: 1, value: 2}));
             this.board.add(new Card({suite: 1, value: 2}));
 
