@@ -2,8 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet"> -->
+  <!-- <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"> -->
+  <link href='css/material-icons.css' rel="stylesheet">
+  <link href="css/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
@@ -17,16 +19,24 @@
           <v-btn @click="seuraava">Seuraava</v-btn>
           <v-btn @click="tick">Tick</v-btn>
           <v-btn @click="test">Test</v-btn>
+          <v-btn @click="pelaa1">Pelaa 1</v-btn>
         </v-container>
         <vue-deck :cards_in="deck_cards"></vue-deck>
+        <v-container>
+            <h3 v-if="kasikortit" style="background: red; color: white; padding: 2px 5px; border-radius: 4px;">Käsikortit</h3>
+            <h3>Viimeisena ottanut: {{viimeinen}}</h3>
+            <h3 v-if="info">{{info}}</h3>
+        </v-container>                                                                                         
         <vue-board :board_in="board" :key="board.key"></vue-board>
         <vue-player v-for="player in players" :player_in="player" :board_in="board" :key="player.key"></vue-player>
       </v-content>
     </v-app>
   </div>
  
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+  <!-- <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script> -->
+  <script src="js/vue.js"></script>
+  <script src="js/vuetify.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

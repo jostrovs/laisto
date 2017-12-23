@@ -35,7 +35,8 @@ class Card{
             this.special = true;
         } else if(this.value === CONST.T && this.suite === CONST.DIAMONDS){
             this.points = 2;
-            this.value_hand = 10;
+            this.value_hand = 16;
+            this.value_board = 10;
             this.special = true;
         }
     }
